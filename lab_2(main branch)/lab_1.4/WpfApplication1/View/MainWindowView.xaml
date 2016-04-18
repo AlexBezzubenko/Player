@@ -1,0 +1,516 @@
+﻿<Window x:Class="TestApp.View.MainWindowView"        
+        
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"     
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cmd="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:p="clr-namespace:WpfApplication1.Properties"
+        xmlns:databinding="clr-namespace:TestApp.Converters"
+         
+        x:Name="MainWindow"
+        Title="Test" Height="633.777" Width="383.105"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        AllowsTransparency="True" 
+        Background="Transparent" 
+        WindowStyle="None"
+        >
+    <Window.Resources>
+
+        <LinearGradientBrush x:Key="GrayBlueGradientBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="ForestGreen" Offset="0" />
+            <GradientStop Color="LightGreen" Offset="1" />
+        </LinearGradientBrush>
+
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="{StaticResource GrayBlueGradientBrush}" />
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Background" Value="LightGreen"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="False">
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter Property="Foreground" Value="Red" />
+                    <Setter Property="Background" Value="LightGreen" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <databinding:MyConverter x:Key="MyConverter"></databinding:MyConverter>
+        <databinding:RateConverter x:Key="RateConverter"></databinding:RateConverter>
+        <DataTemplate x:Key="template1">
+
+            <ListBox Name="listBox" Margin="10,10,10,10" ItemsSource="{Binding}" 
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                     >
+                <ListBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="LightGreen" Offset="0"/>
+                        <GradientStop Color="ForestGreen" Offset="1"/>
+
+                    </LinearGradientBrush>
+                </ListBox.Background>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.ChangeCurrentCommand }" 
+                                               CommandParameter="{Binding  
+                                               ElementName=listBox}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.Style>
+                                <Style TargetType="Grid">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightYellow"/>
+                                        </Trigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="LightYellow"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Grid.Style>
+                            <Rectangle Stroke="Green" StrokeThickness="1" Height="40" Width="275"  Margin="2,2,2,2"/>
+                            <TextBlock Margin ="20,2,20,0" HorizontalAlignment="Left" Text="{Binding Path=TrackString}" />
+                            <TextBlock Margin ="20,2,20,0" HorizontalAlignment="Right" Text="{Binding Path=TrackLength, StringFormat=\{00:mm\\:ss\}}"/>
+
+                            <Label Name ="Rate5button" HorizontalAlignment="Right" 
+                                   
+                                   Margin="0,12,5,0"
+                              Width="90" Height="30">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.RateCommand }" 
+                                               CommandParameter="{Binding Path = SelectedItem, 
+                                               ElementName=listBox }"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Image Source="{Binding Path=Rating, Converter = {StaticResource RateConverter}}"/>
+                            </Label>
+                        </Grid>
+
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </DataTemplate>
+
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Style.Triggers>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding SettingsCommand}"
+                    CommandParameter="{Binding ElementName=MainWindow}"
+              Gesture="CTRL+N" />
+        <KeyBinding Command="{Binding CloseWindowCommand}"
+                    CommandParameter="{Binding ElementName=MainWindow}"
+              Gesture="CTRL+Q" />
+    </Window.InputBindings>
+
+    <Grid>
+        <Border Width="auto" Height="auto" BorderBrush="Green" BorderThickness="2"
+                CornerRadius="30,30,30,30" Margin="0,0,0,403">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="ForestGreen" Offset="0"/>
+                    <GradientStop Color="LightGreen" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Slider HorizontalAlignment="Left" Height="23" Margin="46,106,0,0" 
+                    VerticalAlignment="Top" Width="313"
+                    Maximum="100" Minimum="0"                
+                    Name="pos_slider"
+                    >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="ValueChanged">
+                        <i:InvokeCommandAction Command= "{Binding ChangePositionCommand }">
+                            <i:InvokeCommandAction.CommandParameter>
+                                <MultiBinding Converter="{StaticResource MyConverter}">
+                                    <Binding ElementName="tab" Path="SelectedContent"/>
+                                    <Binding ElementName="pos_slider" Path="Value"/>
+                                </MultiBinding>
+                            </i:InvokeCommandAction.CommandParameter>
+                        </i:InvokeCommandAction>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </Slider>
+
+        </Border>      
+        <Label VerticalAlignment="Top" FontSize="15"  FontWeight="Bold" Foreground="#555"
+               HorizontalAlignment="Right"        
+               Content="{x:Static p:Resources.Volume}" Margin="0,131,164,0" />
+        <Label VerticalAlignment="Top" FontSize="15"  FontWeight="Bold" Foreground="#555"
+               HorizontalAlignment="Right"        
+               Content="{Binding ElementName=vol_slider, Path=Value}" Margin="0,132,136,0" />
+        <Slider HorizontalAlignment="Left" Height="23" Margin="245,137,0,0" 
+                    VerticalAlignment="Top" Width="111"
+                    Maximum="100" Minimum="0"  
+                Value="50"
+                    Name="vol_slider"
+                    >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ValueChanged">
+                    <i:InvokeCommandAction Command= "{Binding ChangeVolumeCommand }">
+                        <i:InvokeCommandAction.CommandParameter>
+                            <MultiBinding Converter="{StaticResource MyConverter}">
+                                <Binding ElementName="tab" Path="SelectedContent"/>
+                                <Binding ElementName="vol_slider" Path="Value"/>
+                            </MultiBinding>
+                        </i:InvokeCommandAction.CommandParameter>
+                    </i:InvokeCommandAction>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Slider>
+        <Menu Margin="47,10,398,457" >
+            <MenuItem Header="File">
+                <MenuItem Header="New"></MenuItem>
+                <MenuItem Header="Open"></MenuItem>
+                <MenuItem Header="Save"></MenuItem>
+                <MenuItem Header="SaveAs..."></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Exit"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Undo"></MenuItem>
+                <MenuItem Header="Redo"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="Cut"></MenuItem>
+                <MenuItem Header="Copy"></MenuItem>
+                <MenuItem Header="Paste"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <TextBlock Name="lblStyled" Text="ALB Music" FontSize="18" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="140,5,85,583" Width="158" Height="46" RenderTransformOrigin="-2.183,-2.253">
+            <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseLeftButtonDown">
+                <i:InvokeCommandAction Command="{Binding DragMoveCommand }"
+                                       CommandParameter="{Binding ElementName=MainWindow}"/>
+            </i:EventTrigger>
+        </i:Interaction.Triggers>
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="28" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <EventTrigger.Actions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Duration="0:0:0.800" Storyboard.TargetProperty="FontSize" To="18" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger.Actions>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <Canvas x:Name="Canvas" Background="Transparent" Height="32"
+                VerticalAlignment="Top" Margin="0,30,0,0">
+            <TextBlock Name="ticker"  VerticalAlignment="Bottom" FontSize="15"  FontWeight="Bold" Foreground="#555"
+                       Text="{x:Static p:Resources.Ticker}" Canvas.Right="0" Canvas.Left="131" >
+                <TextBlock.Triggers>
+                    <EventTrigger RoutedEvent="TextBlock.Loaded">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetProperty="(Canvas.Left)" From="400" To="-400" 
+                                                     Duration="0:0:9" RepeatBehavior="Forever"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </TextBlock.Triggers>
+            </TextBlock>
+        </Canvas>
+        <TextBox HorizontalAlignment="Left" 
+                 Height="24" Margin="401,136,0,0" 
+                 TextWrapping="Wrap" Text="" 
+                 VerticalAlignment="Top" Width="93"
+                 Name="tb1"/>
+
+        <Button Name ="play_button" HorizontalAlignment="Center" 
+                VerticalAlignment="Top" Width="43"  Height="43" RenderTransformOrigin="1.191,0.583"
+                Command="{Binding PlayCommand}"
+                 BorderThickness="0"              
+                 Margin="172,67,148,0" >
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource MyConverter}">
+                    <Binding ElementName="tab" Path="SelectedContent"/>
+                    <Binding ElementName="ticker"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseEnter">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.ButtonMouseElCommand}" 
+                                           CommandParameter="{Binding ElementName=play_button}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseLeave">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.ButtonMouseElCommand }" 
+                                           CommandParameter="{Binding ElementName=play_button}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="{Binding ElementName=PlayButtonImage, Path=Source}" Stretch="Uniform" />
+            </Button.OpacityMask>
+            <Image Source="pack://siteoforigin:,,,/Res/play_button.png" x:Name="PlayButtonImage" RenderTransformOrigin="0.5,0.5"/>
+        </Button>
+        <Button Name ="pause_button" HorizontalAlignment="Center" 
+                VerticalAlignment="Top" Width="43"  Height="43" RenderTransformOrigin="0.511,0.467"
+                Command="{Binding PauseCommand}"
+                CommandParameter="{Binding ElementName=tab, Path=SelectedContent}"
+                BorderThickness="0" Margin="235,67,85,0">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseEnter">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.ButtonMouseElCommand }" 
+                                           CommandParameter="{Binding ElementName=pause_button}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseLeave">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.ButtonMouseElCommand }" 
+                                           CommandParameter="{Binding ElementName=pause_button}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="{Binding ElementName=PauseButtonImage, Path=Source}" Stretch="Uniform" />
+            </Button.OpacityMask>
+            <Image Source="pack://siteoforigin:,,,/Res/pause_button.png" x:Name="PauseButtonImage" RenderTransformOrigin="0.5,0.5"/>
+        </Button>
+        <Button Name ="stop_button" HorizontalAlignment="Center" 
+                VerticalAlignment="Top" Width="43"  Height="43" 
+                Command="{Binding StopCommand}"
+                CommandParameter="{Binding ElementName=tab}"
+                BorderThickness="0" Margin="298,67,22,0">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseEnter">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.ButtonMouseElCommand }" 
+                                           CommandParameter="{Binding ElementName=stop_button}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseLeave">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.ButtonMouseElCommand }" 
+                                           CommandParameter="{Binding ElementName=stop_button}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="{Binding ElementName=StopButtonImage, Path=Source}" Stretch="Uniform" />
+            </Button.OpacityMask>
+            <Image Source="pack://siteoforigin:,,,/Res/stop_button.png" x:Name="StopButtonImage" RenderTransformOrigin="-0.532,1.07"/>
+        </Button>
+        <Button Name ="next_button" HorizontalAlignment="Center" 
+                VerticalAlignment="Top" Width="43"  Height="43" 
+                Command="{Binding NextTrackCommand}"               
+                BorderThickness="0" Margin="110,67,211,0">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource MyConverter}">
+                    <Binding ElementName="tab" Path="SelectedContent"/>
+                    <Binding ElementName="ticker"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseEnter">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.ButtonMouseElCommand }" 
+                                           CommandParameter="{Binding ElementName=next_button}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseLeave">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.ButtonMouseElCommand }" 
+                                           CommandParameter="{Binding ElementName=next_button}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="{Binding ElementName=NextButtonImage, Path=Source}" Stretch="Uniform" />
+            </Button.OpacityMask>
+            <Image Source="pack://siteoforigin:,,,/Res/next_button.png" x:Name="NextButtonImage" RenderTransformOrigin="-0.532,1.07"/>
+        </Button>
+        <Button Name ="prev_button" HorizontalAlignment="Center" 
+                VerticalAlignment="Top" Width="43"  Height="43" 
+                Command="{Binding PrevTrackCommand}"
+                BorderThickness="0" Margin="52,67,269,0">
+            <Button.CommandParameter>
+                <MultiBinding Converter="{StaticResource MyConverter}">
+                    <Binding ElementName="tab" Path="SelectedContent"/>
+                    <Binding ElementName="ticker"/>
+                </MultiBinding>
+            </Button.CommandParameter>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseEnter">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.ButtonMouseElCommand }" 
+                                           CommandParameter="{Binding ElementName=prev_button}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseLeave">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.ButtonMouseElCommand }" 
+                                           CommandParameter="{Binding ElementName=prev_button}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="{Binding ElementName=PrevButtonImage, Path=Source}" Stretch="Uniform" />
+            </Button.OpacityMask>
+            <Image Source="pack://siteoforigin:,,,/Res/prev_button.png" x:Name="PrevButtonImage" RenderTransformOrigin="-0.532,1.07"/>
+        </Button>
+
+        <Button x:Name="CloseButton" HorizontalAlignment="Center" 
+                Height="25" 
+                VerticalAlignment="Top" 
+                Width="35"  
+                BorderThickness="0" 
+                Padding="0" Cursor="Hand" 
+                Command="{Binding CloseWindowCommand}" Margin="338,10,10,0"
+                CommandParameter="{Binding ElementName=MainWindow}"
+                >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseEnter">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.CloseButtonEnterCommand }" 
+                                           CommandParameter="{Binding ElementName=CloseButton}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseLeave">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.CloseButtonLeaveCommand }" 
+                                           CommandParameter="{Binding ElementName=CloseButton}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="{Binding ElementName=CloseButtonImage, Path=Source}" Stretch="Uniform" />
+            </Button.OpacityMask>
+            <Image Source="pack://siteoforigin:,,,/Res/close_button_off.png" x:Name="CloseButtonImage" RenderTransformOrigin="0.5,0.5"/>
+        </Button>
+
+
+        <StackPanel Width="5" Height="100" Background="DarkGreen" HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="0,30,0,0">
+            <StackPanel.Triggers>
+                <EventTrigger RoutedEvent="StackPanel.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" To="100" Duration="00:00:0.3" />
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0.8" Duration="00:00:0.3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="StackPanel.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" To="5" Duration="00:00:0.3" />
+                            <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="00:00:0.3" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </StackPanel.Triggers>
+            <Button Margin="5" Command="{Binding SettingsCommand}"
+                    CommandParameter="{Binding ElementName=MainWindow}"
+                    Content="{x:Static p:Resources.SettingsButton}"></Button>
+
+
+            <Button Margin="5" Content="{x:Static p:Resources.About}"
+                    Command="{Binding AboutCommand}"
+                    CommandParameter="{Binding ElementName=MainWindow}"/>
+            <Button Margin="5" Content="{x:Static p:Resources.Quit}"
+                    Command="{Binding CloseWindowCommand}"
+                    CommandParameter="{Binding ElementName=MainWindow}"/>
+        </StackPanel>
+        <StackPanel Width="326" Height="280" Background="LightGreen" HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="30,208,0,0"  
+                    Name="stackpanel"                
+                    >
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.PlaylistMoveCommand }" 
+                                               CommandParameter="{Binding ElementName=stackpanel}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <TabControl Name ="tab" HorizontalAlignment="Left" 
+                    Height="250" VerticalAlignment="Top" Width="326"                  
+                    ContentTemplate="{StaticResource template1}"
+                    Background="LightGreen"  
+                    BorderThickness="2"
+                    BorderBrush="Green"
+                    >
+                <TabControl.Resources>
+                    <DataTemplate x:Key="AugmentedTabItem">
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter Content="{Binding}"/>
+                            <ContentPresenter  Content="{DynamicResource ContentRight}" Margin="0">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                        <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.AddTabItemCommand}" 
+                                           CommandParameter="{Binding ElementName=tab}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </ContentPresenter>
+                        </StackPanel>
+                    </DataTemplate>
+
+                    <Style TargetType="TabItem">
+                        <Setter Property="HeaderTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ContentPresenter Content="{Binding}"/>
+                                        <ContentPresenter  Margin="5,0,0,0">
+                                            <ContentPresenter.Content>
+                                                <TextBlock Text="X" Foreground="Blue"/>
+                                            </ContentPresenter.Content>
+
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.CloseTabItemCommand}" 
+                                           CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=TabItem, Mode=FindAncestor}}"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </ContentPresenter>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TabControl.Resources>
+                <TabItem Header="{Binding Path=Playlist.Name}" Content="{Binding Path=Playlist}"/>
+                <TabItem  Style="{x:Null}" HeaderTemplate="{StaticResource AugmentedTabItem}">
+                    <TabItem.Resources>
+                        <TextBlock x:Key="ContentRight" Text="+" Foreground="Blue"/>
+                    </TabItem.Resources>
+                </TabItem>
+            </TabControl>
+            <Grid Height="31" Width="325">
+                <Border BorderThickness="2" BorderBrush="Green" Margin="0,-1,-1,1"/>
+                <Button x:Name ="remove_track_button"  Content="-" HorizontalAlignment="Left" Height="17"  VerticalAlignment="Top" Width="26" 
+        	Command="{Binding RemoveTrackCommand}"
+        	CommandParameter="{Binding SelectedContent, ElementName=tab}" Margin="46,5,0,-5" >
+                </Button>
+                <Button Name ="add_track_button" HorizontalAlignment="Left" Height="16"  VerticalAlignment="Top" Width="24" 
+                Command="{Binding AddTrackCommand}"
+                CommandParameter="{Binding ElementName=tab, Path=SelectedItem}" Margin="14,5,0,-4" >
+                    +
+                </Button>
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+
+</Window>

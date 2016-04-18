@@ -1,0 +1,98 @@
+﻿<Window x:Class="TestApp.View.AboutWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"     
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:cmd="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"       
+        xmlns:p="clr-namespace:WpfApplication1.Properties" 
+        xmlns:databinding="clr-namespace:TestApp.Converters"
+        x:Name="SettingsWindow"
+        Title="Settings" Height="224.777" Width="383.105"
+       
+        ResizeMode="NoResize"
+        AllowsTransparency="True" 
+        Background="Transparent" 
+        WindowStyle="None"
+        >
+    <Window.Resources>
+        <databinding:LangConverter x:Key="LangConverter"></databinding:LangConverter>
+        <LinearGradientBrush x:Key="GreenGradientBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="ForestGreen" Offset="0" />
+            <GradientStop Color="LightGreen" Offset="1" />
+        </LinearGradientBrush>
+
+
+
+
+        <Style TargetType="{x:Type Canvas}">
+            <Setter Property="Background" 
+      Value="{StaticResource GreenGradientBrush}" />
+        </Style>
+        <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Background" Value="LightGreen"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="False">
+                    <Setter Property="Opacity" Value="0.5" />
+                    <Setter Property="Foreground" Value="Red" />
+                    <Setter Property="Background" Value="LightGreen" />
+                </Trigger>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="Green" />
+                    <Setter Property="Background" Value="LightGreen" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Border Width="auto" Height="auto" BorderBrush="Green" BorderThickness="2"
+                CornerRadius="30,30,30,30" Margin="71,10,86,53"
+                Opacity="0.9">
+            <Border.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="ForestGreen" Offset="0"/>
+                    <GradientStop Color="LightGreen" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <TextBlock HorizontalAlignment="Center" FontSize="15"  FontWeight="Bold" Foreground="#555"
+                   VerticalAlignment="Top"    
+                   Text="{x:Static p:Resources.About}" Margin="125,19,129,0">
+             <i:Interaction.Triggers>
+            <i:EventTrigger EventName="MouseLeftButtonDown">
+                <i:InvokeCommandAction Command="{Binding DragMoveCommand }"
+                                       CommandParameter="{Binding ElementName=SettingsWindow}"/>
+            </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </TextBlock>
+
+        <Button x:Name="CloseButton" HorizontalAlignment="Center" 
+                Height="25" 
+                VerticalAlignment="Top" 
+                Width="35"  
+                BorderThickness="0" 
+                Padding="0" Cursor="Hand" 
+                Command="{Binding CloseWindowCommand}" 
+                CommandParameter="{Binding ElementName=SettingsWindow}" Margin="254,21,94,0"
+                Panel.ZIndex="1"
+                >
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseEnter">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.CloseButtonEnterCommand }" 
+                                           CommandParameter="{Binding ElementName=CloseButton}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="MouseLeave">
+                    <i:InvokeCommandAction Command="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}, Path=DataContext.CloseButtonLeaveCommand }" 
+                                           CommandParameter="{Binding ElementName=CloseButton}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <Button.OpacityMask>
+                <ImageBrush ImageSource="{Binding ElementName=CloseButtonImage, Path=Source}" Stretch="Uniform" />
+            </Button.OpacityMask>
+            <Image Source="pack://siteoforigin:,,,/Res/close_button_off.png" x:Name="CloseButtonImage" RenderTransformOrigin="0.5,0.5"/>
+        </Button>
+        <TextBlock Margin="113,44,98,108" TextWrapping="Wrap" Text="{x:Static p:Resources.AboutText}"
+                   FontSize="14">
+            
+        </TextBlock>
+    </Grid>
+</Window>

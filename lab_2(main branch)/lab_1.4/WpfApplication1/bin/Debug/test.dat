@@ -1,0 +1,168 @@
+<SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+<SOAP-ENV:Body>
+<a1:TestModel id="ref-1" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Name id="ref-3">Общие вопросы</Name>
+<NumOfQuestion>5</NumOfQuestion>
+<Question_0 href="#ref-4"/>
+<Question_1 href="#ref-5"/>
+<Question_2 href="#ref-6"/>
+<Question_3 href="#ref-7"/>
+<Question_4 href="#ref-8"/>
+</a1:TestModel>
+<a1:Question id="ref-4" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<QText id="ref-9">Пишется &#34;A&#34; на месте пропуска в словах</QText>
+<FailStats>0</FailStats>
+<SuccessStats>0</SuccessStats>
+<NumOfAnswers>5</NumOfAnswers>
+<Answer_0 href="#ref-10"/>
+<Answer_1 href="#ref-11"/>
+<Answer_2 href="#ref-12"/>
+<Answer_3 href="#ref-13"/>
+<Answer_4 href="#ref-14"/>
+</a1:Question>
+<a1:Question id="ref-5" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<QText id="ref-15">Пишется &#34;Е&#34; на месте всех пропусков в рядах:</QText>
+<FailStats>0</FailStats>
+<SuccessStats>0</SuccessStats>
+<NumOfAnswers>5</NumOfAnswers>
+<Answer_0 href="#ref-16"/>
+<Answer_1 href="#ref-17"/>
+<Answer_2 href="#ref-18"/>
+<Answer_3 href="#ref-19"/>
+<Answer_4 href="#ref-20"/>
+</a1:Question>
+<a1:Question id="ref-6" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<QText id="ref-21">Двойные согласные пишутся в словах:</QText>
+<FailStats>0</FailStats>
+<SuccessStats>0</SuccessStats>
+<NumOfAnswers>5</NumOfAnswers>
+<Answer_0 href="#ref-22"/>
+<Answer_1 href="#ref-23"/>
+<Answer_2 href="#ref-24"/>
+<Answer_3 href="#ref-25"/>
+<Answer_4 href="#ref-26"/>
+</a1:Question>
+<a1:Question id="ref-7" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<QText id="ref-27">Пишется «О» на месте пропуска в словах:</QText>
+<FailStats>0</FailStats>
+<SuccessStats>0</SuccessStats>
+<NumOfAnswers>5</NumOfAnswers>
+<Answer_0 href="#ref-28"/>
+<Answer_1 href="#ref-29"/>
+<Answer_2 href="#ref-30"/>
+<Answer_3 href="#ref-31"/>
+<Answer_4 href="#ref-32"/>
+</a1:Question>
+<a1:Question id="ref-8" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<QText id="ref-33">Пишется мягкий знак на месте пропуска:</QText>
+<FailStats>0</FailStats>
+<SuccessStats>0</SuccessStats>
+<NumOfAnswers>5</NumOfAnswers>
+<Answer_0 href="#ref-34"/>
+<Answer_1 href="#ref-35"/>
+<Answer_2 href="#ref-36"/>
+<Answer_3 href="#ref-37"/>
+<Answer_4 href="#ref-38"/>
+</a1:Question>
+<a1:Answer id="ref-10" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-39">несг...раемый</Text>
+<Correct>false</Correct>
+</a1:Answer>
+<a1:Answer id="ref-11" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-40">з...рница</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-12" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-41">раск...ленный</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-13" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-42">подр...стковый</Text>
+<Correct>false</Correct>
+</a1:Answer>
+<a1:Answer id="ref-14" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-43">ст...рожил</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-16" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-44">пос..деть за столом; сл..паться в комок</Text>
+<Correct>false</Correct>
+</a1:Answer>
+<a1:Answer id="ref-17" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-45">пр..кращение споров; скр..пить подписью</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-18" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-46">пр...стегнуть ремень;  ув...дший от жары</Text>
+<Correct>false</Correct>
+</a1:Answer>
+<a1:Answer id="ref-19" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-47">пр..стрелять ружье; см..рение</Text>
+<Correct>false</Correct>
+</a1:Answer>
+<a1:Answer id="ref-20" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-48">оскв...рнить память; разв...вается стяг</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-22" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-49">ки(л,лл)ер</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-23" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-50">о(к/кк)упация</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-24" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-51">ра(с,сс)четливый человек</Text>
+<Correct>false</Correct>
+</a1:Answer>
+<a1:Answer id="ref-25" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-52">мирово(з/зз)рение</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-26" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-53">заветре(н/нн)ый</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-28" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-54">крюч…к</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-29" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-55">ш...мпольный</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-30" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-56">возмещ...нный</Text>
+<Correct>false</Correct>
+</a1:Answer>
+<a1:Answer id="ref-31" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-57">бельч..нок</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-32" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-58">еж..вые рукавицы</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-34" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-59">лесная глуш..</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-35" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-60">отвлеч.. внимание</Text>
+<Correct>true</Correct>
+</a1:Answer>
+<a1:Answer id="ref-36" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-61">пять краж..</Text>
+<Correct>false</Correct>
+</a1:Answer>
+<a1:Answer id="ref-37" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-62">монтаж..</Text>
+<Correct>false</Correct>
+</a1:Answer>
+<a1:Answer id="ref-38" xmlns:a1="http://schemas.microsoft.com/clr/nsassem/TestApp.Model/WpfApplication1%2C%20Version%3D1.0.0.0%2C%20Culture%3Dneutral%2C%20PublicKeyToken%3Dnull">
+<Text id="ref-63">сверх..яростный</Text>
+<Correct>false</Correct>
+</a1:Answer>
+</SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
